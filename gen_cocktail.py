@@ -7,6 +7,7 @@ import time
 import codecs
 import sys
 import re
+
     #HERE ARE THE THREE THINGS YOU MIGHT WANT TO CHANGE
 def create_idml(template_path, csv_path, output_name):
     ## 1) input file template
@@ -102,7 +103,10 @@ def create_idml(template_path, csv_path, output_name):
                         for line in fin:
                             line2 = line
                             #see if this line has anything to replace and replace it with data from our CSV file
+                            if (image_to_replace in line2):
+                                print(line2, line2.replace(image_to_replace, new_image_path))
                             line2 = line2.replace(image_to_replace, new_image_path)
+
                             #write this line
                             fout.write(line2)
             except PermissionError:
@@ -123,8 +127,8 @@ def create_idml(template_path, csv_path, output_name):
 
 for data in enumerate(os.listdir('temp_data')):
     index = '{:02d}'.format(int(re.search(r'\d+', data[1]).group()))
-    if ('beer' in data[1]):
-        create_idml('INDD_Templates/PS3 A5 Template.idml', 'temp_data/{}'.format(data[1]), 'beer-{}'.format(index))
+    if ('cocktail' in data[1]):
+        create_idml('INDD_Templates/PS3 A5 Template.idml', 'temp_data/{}'.format(data[1]), 'cocktail-{}'.format(index))
 
 print("Done")
 
