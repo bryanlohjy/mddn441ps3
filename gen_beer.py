@@ -10,13 +10,13 @@ import sys
     #HERE ARE THE THREE THINGS YOU MIGHT WANT TO CHANGE
 def create_idml(template_path, csv_path, output_name):
     ## 1) input file template
-    idml = 'INDD_Templates/PS3 A5 Template.idml'
+    idml = template_path
     
     ## 2) fields where data can be found
-    csv_file = 'temp_data/beer-0.csv'
+    csv_file = csv_path
     
     ## 3) output name (the idml part will be added)
-    output_filename = 'beer-0'
+    output_filename = output_name
     
     #Separator for fields in the CSV file (in case you want a 'tab', just change to '\t')
     #change this
@@ -119,11 +119,11 @@ def create_idml(template_path, csv_path, output_name):
     
     #delete our unzipped IDML directory
     shutil.rmtree(template)
-    print("")
+    print("Created {}".format(output_name))
 
-for index, data in enumerate(os.listdir('temp_data')):
-    print(data, index)
-    # create_idml(template_path, csv_path, output_name)
+for i, data in enumerate(os.listdir('temp_data')):
+    index = "{:02d}".format(i)
+    create_idml('INDD_Templates/PS3 A5 Template.idml', 'temp_data/{}'.format(data), 'beer-{}'.format(index))
 
 print("Done")
 
