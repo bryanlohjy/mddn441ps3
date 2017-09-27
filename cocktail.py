@@ -226,9 +226,9 @@ def get_drink_serving(s, d):
 def get_image(i = 'z'):
     images = os.listdir('./data/images')
     if (i == 'z'):
-        return random.choice(images)
+        return './data/images/{}'.format(random.choice(images))
     else:
-        return images[i % len(images)]
+        return './data/images/{}'.format(images[i % len(images)])
 
 def get_drink(s, d, i):
     content = {
