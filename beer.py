@@ -97,11 +97,19 @@ for i in range(20):
     tempData["notes"] = notes.flatten("#notes#")
     tempData["pairing"] = pairing.flatten("#pairing#")
     tempData["serving_suggestion"] = serving.flatten("#serving#")
-    tempData["image"] = random_pick(os.listdir('./data/cans'))
+    tempData["image"] = './data/cans/{}'.format(random_pick(os.listdir('./data/cans')))
     data.append(tempData)
 
 out_data = { 'content': data }
 
 # writing out a json file of contents
-with open('content.json', 'w') as outfile:
-    json.dump(out_data, outfile)
+# with open('content.json', 'w') as outfile:
+#     json.dump(out_data, outfile)
+
+# writing out a csv file of contents
+for i in range(len(out_data['content'])):
+    item = out_data['content'][i]
+    with open('temp_data/beer-{}.csv'.format(i),'w') as file:
+        for key in item.keys():
+            file.write('{}\t{}'.format(key, item[key]))
+            file.write('\n')
