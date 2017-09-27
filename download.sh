@@ -24,3 +24,24 @@ wget --adjust-extension \
      --execute robots=off \
      -A "*.jpg" \
      http://www.craftcans.com/db.php?cat=cans
+
+# Data for cocktail generator
+# song lyrics
+wget -O data/lyrics.csv \
+https://raw.githubusercontent.com/walkerkq/musiclyrics/master/billboard_lyrics_1964-2015.csv
+# cocktail images
+wget --adjust-extension \
+     --random-wait \
+     --span-hosts \
+     --convert-links \
+     --backup-converted \
+     --no-directories \
+     --timestamping \
+     --page-requisites \
+     --directory-prefix=data/images \
+     --execute robots=off \
+     -A "*.jpg" \
+     'http://www.thecocktaildb.com/index.php'
+
+# Scrap cocktail db database with BeautifulSoup
+python scrape_cocktaildb.py
