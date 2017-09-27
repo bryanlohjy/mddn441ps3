@@ -109,7 +109,7 @@ out_data = { 'content': data }
 # writing out a csv file of contents
 for i in range(len(out_data['content'])):
     item = out_data['content'][i]
-    with open('temp_data/beer-{}.csv'.format(i),'w') as file:
+    with open('temp_data/beer-{:02d}.csv'.format(i),'w') as file:
         for key in item.keys():
             file.write('{}\t{}'.format(key, item[key]))
             file.write('\n')
